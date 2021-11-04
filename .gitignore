@@ -31,3 +31,14 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### 20211104 ###
+.DS_Store
+src/.DS_Store
+src/main/.DS_Store
+src/main/java/.DS_Store
+src/main/java/com/.DS_Store
+src/main/java/com/example/.DS_Store
+src/main/java/com/example/demo/.DS_Store
+src/main/resources/.DS_Store
