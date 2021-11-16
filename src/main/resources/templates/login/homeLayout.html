@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
     <meta charset="UTF-8"></meta>
@@ -29,7 +30,6 @@
             </form>
         </div>
     </nav>
-    
     <!-- ===== サイドバー ===== -->
     <div class="container-fluid">
         <div class="row">
@@ -38,11 +38,13 @@
                     <li role="presentation">
                         <a th:href="@{'/userList'}">ユーザ管理</a>
                     </li>
+                    <li role="presentation" sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{'/admin'}">アドミン用画面</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
-    
     <!-- ===== コンテンツ ===== -->
     <div class="container-fluid">
         <div class="row">
