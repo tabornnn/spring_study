@@ -25,11 +25,7 @@
 	</properties>
 
 	<dependencies>
-		<!-- SpringJDBC -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
+
 		<!-- Thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -57,10 +53,22 @@
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
 		</dependency>
 		<!-- H2データベース -->
-		<dependency>
+<!--  		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
+		</dependency>  -->
+		<!-- MySQL -->
+       	<dependency>
+      		<groupId>mysql</groupId>
+      		<artifactId>mysql-connector-java</artifactId>
+      		<version>8.0.27</version>
+      		<scope>runtime</scope>
+    	</dependency>
+    	<!-- SpringJDBC -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 		<!-- Lombok -->
 		<dependency>
