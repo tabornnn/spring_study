@@ -22,6 +22,8 @@ public class GlobalControllAdvice {
 
         // HTTPのエラーコード（500）をModelに登録
         model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR);
+        
+        System.out.println("globalあああああああああああああああああああああああああああああああああああ");
 
         return "error";
     }

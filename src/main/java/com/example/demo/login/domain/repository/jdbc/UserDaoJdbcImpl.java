@@ -40,6 +40,7 @@ public class UserDaoJdbcImpl implements UserDao {
         //パスワード暗号化
         String password = passwordEncoder.encode(user.getPassword());
 
+        
         //１件登録
         int rowNumber = jdbc.update("INSERT INTO m_user(user_id,"
                 + " password,"
@@ -56,6 +57,9 @@ public class UserDaoJdbcImpl implements UserDao {
                 user.getAge(),
                 user.isMarriage(),
                 user.getRole());
+        
+        
+        System.out.println("userdaojdbcimpl");
 
         return rowNumber;
     }
@@ -123,7 +127,7 @@ public class UserDaoJdbcImpl implements UserDao {
         String password = passwordEncoder.encode(user.getPassword());
 
         //１件更新
-        int rowNumber = jdbc.update("UPDATE M_USER"
+        int rowNumber = jdbc.update("UPDATE m_user"
                 + " SET"
                 + " password = ?,"
                 + " user_name = ?,"

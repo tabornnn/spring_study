@@ -4,8 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.repository.UserDao;
@@ -15,70 +19,75 @@ import com.example.demo.login.domain.service.RestService;
 @Service
 public class RestServiceJdbcImpl implements RestService {
 
-    @Autowired
-    @Qualifier("UserDaoJdbcImpl")
-    UserDao dao;
+	@Autowired
+	@Qualifier("UserDaoJdbcImpl")
+	UserDao dao;
 
-    //１件登録用メソッド
-    @Override
-    public boolean insert(User user) {
+	//１件登録用メソッド
+	@Override
+	public boolean insert(User user) {
 
-        int result = dao.insertOne(user);
+		int result = dao.insertOne(user);
 
-        if(result == 0) {
+		if(result == 0) {
 
-            return false;
+			return false;
 
-        } else {
+		} else {
 
-            return true;
+			return true;
 
-        }
-    }
+		}
+	}
 
-    //１件検索用メソッド
-    @Override
-    public User selectOne(String userId) {
-        return dao.selectOne(userId);
-    }
+	//１件検索用メソッド
+	@Override
+	public User selectOne(String userId) {
+		return dao.selectOne(userId);
+	}
 
-    //全件検索用メソッド
-    @Override
-    public List<User> selectMany() {
-        return dao.selectMany();
-    }
+	//全件検索用メソッド
+	@Override
+	public List<User> selectMany() {
+		return dao.selectMany();
+	}
 
-    //１件更新用メソッド
-    @Override
-    public boolean update(User user) {
+	//１件更新用メソッド
+	@Override
+	public boolean update(User user) {
+		try {
+			int result = dao.updateOne(user);
 
-        int result = dao.updateOne(user);
+			if(result == 0) {
 
-        if(result == 0) {
+				return false;
 
-            return false;
+			} else {
 
-        } else {
+				return true;
 
-            return true;
+			}
+		}catch(Exception e) {
+			return false;
+		}
+	}
 
-        }
-    }
+	//１件削除用メソッド
+	@Override
+	public boolean delete(String userId) {
 
-    //１件削除用メソッド
-    @Override
-    public boolean delete(String userId) {
+		int result = dao.deleteOne(userId);
 
-        int result = dao.deleteOne(userId);
+		if(result == 0) {
 
-        if(result == 0) {
+			return false;
 
-            return false;
+		} else {
 
-        } else {
+			return true;
 
-            return true;
+		}
+	}
+	
 
-        }
-    }
 }

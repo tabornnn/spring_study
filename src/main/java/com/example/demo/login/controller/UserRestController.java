@@ -3,7 +3,10 @@ package com.example.demo.login.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,12 +33,12 @@ public class UserRestController {
         return service.selectMany();
     }
 
-    /**
+    /**	
      * ユーザー１件取得
      */
     @GetMapping("/rest/get/{id:.+}")
     public User getUserOne(@PathVariable("id") String userId) {
-
+    	
         // ユーザー１件取得
         return service.selectOne(userId);
     }
@@ -60,6 +63,8 @@ public class UserRestController {
             str = "{\"result\":\"error\"}";
 
         }
+         System.out.println("---------------------");
+         System.out.println("log");
 
         // 結果用の文字列をリターン
         return str;
@@ -110,5 +115,14 @@ public class UserRestController {
 
         // 結果用の文字列をリターン
         return str;
+    }
+    /**
+     * Exception発生時の処理メソッド.
+     */
+    @ExceptionHandler(DataAccessException.class)
+    public String exceptionHandler(Exception e, Model model) {
+    	System.out.println("a");
+    	return "{\"result\":\"error\"}";
+
     }
 }
