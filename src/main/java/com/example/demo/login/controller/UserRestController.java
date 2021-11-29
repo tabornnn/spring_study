@@ -3,6 +3,7 @@ package com.example.demo.login.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +22,7 @@ import com.example.demo.login.domain.service.RestService;
 public class UserRestController {
 
     @Autowired
+    @Qualifier("RestServiceMybatisImpl")
     RestService service;
 
     /**
